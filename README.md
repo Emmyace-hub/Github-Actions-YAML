@@ -114,7 +114,6 @@ Adding the build steps:
             echo "Received value from previous step: ${{ steps.step-one.outputs.value }}"
 
 # computing the script to meet all the above configuratioin would be as seen below
-
         name: Github Actions with YAML
 
         on:
@@ -133,14 +132,16 @@ Adding the build steps:
             steps:
             - uses: actions/checkout@v2
 
-            - name: Install dependencies
-                run: npm install
+            # Node.js steps removed because no package.json is present.
+            # If you add a package.json, you can restore these steps:
+            # - name: Install dependencies
+            #   run: npm install
 
-            - name: Build
-                run: npm run build
+            # - name: Build
+            #   run: npm run build
 
-            - name: Run tests
-                run: npm test
+            # - name: Run tests
+            #   run: npm test
 
         example:
             runs-on: ubuntu-latest
@@ -173,4 +174,7 @@ Adding the build steps:
             - id: step-two
                 run: |
                 echo "Received value from previous step: ${{ steps.step-one.outputs.value }}"
-                # Access the output of 'step-one' in 'step-two'.
+                # Access the output of 'step-one'
+
+we can see on the github workflow that it was successfully deployed
+![2](./img/2.png)
